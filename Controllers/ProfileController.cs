@@ -10,12 +10,12 @@ namespace Keepr.Controllers
   [ApiController]
   [Route("[controller]")]
 
-  public class ProfileController : ControllerBase
+  public class ProfilesController : ControllerBase
   {
 
     private readonly ProfileService _ps;
 
-    public ProfileController(ProfileService ps)
+    public ProfilesController(ProfileService ps)
     {
       _ps = ps;
     }

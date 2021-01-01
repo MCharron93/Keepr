@@ -5,3 +5,31 @@
 --   picture VARCHAR(255) NOT NULL,
 --   PRIMARY KEY (id)
 -- )
+-- CREATE TABLE keeps(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   name VARCHAR(255) NOT NULL,
+--   description VARCHAR(255) NOT NULL,
+--   keepcount INT NOT NULL,
+--   viewcount INT NOT NULL,
+--   picture VARCHAR(255) NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (creatorId)
+--     REFERENCES kprofile(id)
+--     ON DELETE CASCADE
+-- )
+-- DROP TABLE keeps
+-- CREATE TABLE keeps(
+--   id INT NOT NULL AUTO_INCREMENT,
+--   name VARCHAR(255) NOT NULL,
+--   description VARCHAR(255) NOT NULL,
+--   keeps INT,
+--   views INT,
+--   shares INT,
+--   img VARCHAR(255) NOT NULL,
+--   creatorId VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (creatorId)
+--     REFERENCES kprofile(id)
+--     ON DELETE CASCADE
+-- )
