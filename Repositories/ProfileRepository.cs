@@ -16,14 +16,14 @@ namespace Keepr.Repositories
 
     public Profile GetByEmail(string email)
     {
-      string sql = "SELECT * FROM profiles WHERE email = @Email";
+      string sql = "SELECT * FROM kprofile WHERE email = @Email";
       return _db.QueryFirstOrDefault<Profile>(sql, new { email });
     }
 
     public Profile Create(Profile userInfo)
     {
       string sql = @"
-      INSERT INTO profiles 
+      INSERT INTO kprofile 
       (name, picture, email, id)
       VALUES 
       (@Name, @Picture, @Email, @Id)";
