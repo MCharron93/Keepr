@@ -14,10 +14,12 @@ namespace Keepr.Controllers
   public class KeepsController : ControllerBase
   {
     private readonly KeepsService _ks;
+    private readonly ProfileService _ps;
 
-    public KeepsController(KeepsService ks)
+    public KeepsController(KeepsService ks, ProfileService ps)
     {
       _ks = ks;
+      _ps = ps;
     }
 
     // Basic Get to display all keeps, not required to be logged in
@@ -57,6 +59,7 @@ namespace Keepr.Controllers
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newKeep.CreatorId = userInfo.Id;
+        _ps.updateKeepCount(userInfo);
         Keep created = _ks.CreateKeep(newKeep);
         return Ok(created);
       }
@@ -91,6 +94,7 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        _ps.deleteKeepCount(userInfo);
         return Ok(_ks.Delete(id, userInfo.Id));
       }
       catch (System.Exception e)

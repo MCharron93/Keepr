@@ -6,7 +6,8 @@ namespace Keepr.Models
     public string Id { get; set; }
     public string Email { get; set; }
     public string Picture { get; set; }
-
+    public int Keeps { get; set; }
+    public int Vaults { get; set; }
   }
 
 }

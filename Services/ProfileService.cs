@@ -24,6 +24,21 @@ namespace Keepr.Services
       return foundProfile;
     }
 
+    // NOTE Updates for KeepCounts based on creating and deleting keeps, apply this to vaults as well for monitoring vault creation and deletion
+    public string updateKeepCount(Profile userInfo)
+    {
+      userInfo.Keeps++;
+      _repo.updateKeepCount(userInfo);
+      return "Successfully updated total keeps!";
+    }
+
+    public string deleteKeepCount(Profile userInfo)
+    {
+      userInfo.Keeps--;
+      _repo.updateKeepCount(userInfo);
+      return "Successfully decreased total keeps!";
+    }
+
     // public IEnumerable<Blog> GetBlogsByProfile(string profileId, string userId)
     // {
     //   return _repo.GetBlogsByProfile(profileId).ToList().FindAll(b => b.CreatorId == userId || b.IsPublished);

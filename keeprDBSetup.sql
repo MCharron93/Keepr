@@ -33,3 +33,7 @@
 --     REFERENCES kprofile(id)
 --     ON DELETE CASCADE
 -- )
+-- ALTER TABLE kprofile
+-- ADD COLUMN vaults INT
+-- ALTER TABLE kprofile
+-- ADD COLUMN keeps INT
