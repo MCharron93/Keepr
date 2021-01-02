@@ -1,21 +1,30 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">Vue 3 Starter</span>
-    </h1>
+  <div class="home row justify-content-around">
+    <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
   </div>
 </template>
 
 <script>
+import { keepsService } from '../services/KeepsService'
+import { computed, onMounted } from 'vue'
+import KeepsComponent from '../components/KeepsComponent.vue'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: { KeepsComponent },
+  setup() {
+    onMounted(async() => {
+      await keepsService.getAllKeeps()
+    })
+    return {
+      keeps: computed(() => AppState.allKeeps)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .home{
-  text-align: center;
   user-select: none;
   > img{
     height: 200px;
