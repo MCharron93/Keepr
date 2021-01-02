@@ -36,6 +36,8 @@ namespace Keepr.Controllers
       }
     }
 
+    // Will need to GetProfileById for FE viewing of other's public profiles
+
     // [HttpGet("{id}/blogs")]
     // [Authorize]
     // // NOTE this authorization will get back a profile, adds that layer of security on the requests.
