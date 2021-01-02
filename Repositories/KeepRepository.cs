@@ -61,5 +61,11 @@ namespace Keepr.Repositories
       int valid = _db.Execute(sql, new { id });
       return valid > 0;
     }
+
+    // internal IEnumerable<Keep> GetKeepsByProfileId(Profile id)
+    // {
+    //   string sql = "SELECT * FROM keeps WHERE id = @Id";
+    //   return _db.Query<Keep>(sql, creatorId);
+    // }
   }
 }

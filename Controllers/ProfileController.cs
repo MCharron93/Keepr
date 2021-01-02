@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Keepr.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Keepr.Controllers
 {
@@ -14,10 +15,12 @@ namespace Keepr.Controllers
   {
 
     private readonly ProfileService _ps;
+    private readonly KeepsService _ks;
 
-    public ProfilesController(ProfileService ps)
+    public ProfilesController(ProfileService ps, KeepsService ks)
     {
       _ps = ps;
+      _ks = ks;
     }
 
     [HttpGet]
@@ -35,6 +38,19 @@ namespace Keepr.Controllers
         return BadRequest(err.Message);
       }
     }
+
+
+    // public ActionResult<IEnumerable<Keep>> GetKeepsByProfileId(Profile id)
+    // {
+    //   try
+    //   {
+    //     return Ok(_ks.GetKeepsByProfileId(id));
+    //   }
+    //   catch (System.Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     // Will need to GetProfileById for FE viewing of other's public profiles
 
