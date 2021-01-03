@@ -1,10 +1,10 @@
 namespace Keepr.Models
 {
-  public class VaultKeeps
+  public class VaultKeep
   {
     public int Id { get; set; }
     public string CreatorId { get; set; }
-    public string KeepId { get; set; }
-    public string VaulttId { get; set; }
+    public int KeepId { get; set; }
+    public int VaultId { get; set; }
   }
 }
