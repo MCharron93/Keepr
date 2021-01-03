@@ -24,5 +24,33 @@ namespace Keepr.Services
     {
       return _repo.GetKeepsByVaultId(vaultId);
     }
+
+    public string Delete(int id, string userId)
+    {
+      VaultKeep found = _repo.GetVaultKeepById(id);
+      if (found == null || found.CreatorId != userId)
+      {
+        throw new Exception("Invalid Request");
+      }
+      if (_repo.Delete(id))
+      {
+        return "Successfully Deleted!";
+      }
+      return "Unsuccessful Deletion";
+    }
+
+    public VaultKeep GetVaultKeepById(int id, Profile userInfo)
+    {
+      VaultKeep found = _repo.GetVaultKeepById(id);
+      if (found.CreatorId == userInfo.Id)
+      {
+
+        return _repo.GetVaultKeepById(id);
+      }
+      else
+      {
+        throw new Exception("Invalid Request");
+      }
+    }
   }
 }

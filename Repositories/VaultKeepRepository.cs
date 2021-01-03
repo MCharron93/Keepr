@@ -39,5 +39,18 @@ namespace Keepr.Repositories
       ";
       return _db.Query<VaultKeepsViewModel, Profile, VaultKeepsViewModel>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { vaultId }, splitOn: "id");
     }
+
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM vaultKeeps WHERE id = @Id";
+      int valid = _db.Execute(sql, new { id });
+      return valid > 0;
+    }
+
+    internal VaultKeep GetVaultKeepById(int id)
+    {
+      string sql = "SELECT * FROM vaultKeeps WHERE id = @Id";
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { id });
+    }
   }
 }
