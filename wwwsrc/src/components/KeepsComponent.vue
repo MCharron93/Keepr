@@ -1,7 +1,7 @@
 <template>
-  <div class="keep card bg-light text-white align-text-bottom" data-toggle="modal" data-target="#exampleModal">
+  <div class="keep card bg-light align-text-bottom" data-toggle="modal" data-target="#keepModal">
     <img :src="keepProp.img" alt="" class="card-img">
-    <div class="card-img-overlay row justify-content-between align-items-end">
+    <div class="card-img-overlay row justify-content-between align-items-end text-white">
       <h3 class="card-title">
         {{ keepProp.name }}
       </h3>
@@ -10,17 +10,18 @@
         UserIcon here
       </div>
     </div>
+
     <div class="modal fade"
-         id="exampleModal"
+         id="keepModal"
          tabindex="-1"
          role="dialog"
-         aria-labelledby="exampleModalLabel"
+         aria-labelledby="keepModalTitle"
          aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
+            <h5 class="modal-title" id="exampleModalLongTitle">
               Modal title
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,7 +29,7 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            Some words and stuff about keeps
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
