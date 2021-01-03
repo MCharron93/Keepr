@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Keepr.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/[controller]")]
 
   public class ProfilesController : ControllerBase
   {
@@ -39,18 +39,18 @@ namespace Keepr.Controllers
       }
     }
 
-
-    // public ActionResult<IEnumerable<Keep>> GetKeepsByProfileId(Profile id)
-    // {
-    //   try
-    //   {
-    //     return Ok(_ks.GetKeepsByProfileId(id));
-    //   }
-    //   catch (System.Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+    [HttpGet("{creatorId}/keeps")]
+    public ActionResult<IEnumerable<Keep>> GetKeepsByProfileId(string creatorId)
+    {
+      try
+      {
+        return Ok(_ks.GetKeepsByProfileId(creatorId));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     // Will need to GetProfileById for FE viewing of other's public profiles
 
