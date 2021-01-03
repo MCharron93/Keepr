@@ -26,9 +26,18 @@ namespace Keepr.Services
       return _repo.GetAllVaults(userId);
     }
 
-    public Vault GetSingleVault(int id)
+    public Vault GetSingleVault(int id, Profile userInfo)
     {
-      return _repo.GetSingleVault(id);
+      Vault foundVault = _repo.GetSingleVault(id);
+      if (foundVault.CreatorId != userInfo.Id && foundVault.IsPrivate != true)
+      {
+        return foundVault;
+      }
+      else if (foundVault.IsPrivate != true && foundVault.CreatorId == userInfo.Id)
+      {
+        return foundVault;
+      }
+      throw new Exception("Invalid Request");
     }
 
     public string Delete(int id, string userId)
@@ -44,5 +53,12 @@ namespace Keepr.Services
       }
       return "Unsuccessful in Deleting Vault";
     }
+
+    public IEnumerable<Vault> GetVaultsByProfileId(string creatorId)
+    {
+      return _repo.GetVaultsByProfileId(creatorId);
+    }
+
+
   }
 }

@@ -30,7 +30,7 @@ namespace Keepr.Repositories
 
     internal Vault GetSingleVault(int id)
     {
-      string sql = "SELECT * FROM Vaults WHERE id = @id";
+      string sql = "SELECT * FROM vaults WHERE id = @Id";
       return _db.QueryFirstOrDefault<Vault>(sql, new { id });
     }
 
@@ -39,6 +39,12 @@ namespace Keepr.Repositories
       string sql = "DELETE FROM Vaults WHERE id = @Id";
       int valid = _db.Execute(sql, new { id });
       return valid > 0;
+    }
+
+    public IEnumerable<Vault> GetVaultsByProfileId(string creatorId)
+    {
+      string sql = "SELECT * FROM vaults WHERE creatorId = @CreatorId";
+      return _db.Query<Vault>(sql, new { creatorId });
     }
 
     internal IEnumerable<Vault> GetAllVaults(string userId)

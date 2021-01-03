@@ -56,11 +56,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Vault> GetSingleVault(int id)
+    public async Task<ActionResult<Vault>> GetSingleVault(int id)
     {
       try
       {
-        return Ok(_vs.GetSingleVault(id));
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vs.GetSingleVault(id, userInfo));
       }
       catch (System.Exception e)
       {
