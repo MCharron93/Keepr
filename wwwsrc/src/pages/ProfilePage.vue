@@ -15,14 +15,16 @@
       </div>
     </div>
     <div class="row justify-content-between p-5">
+      <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
       <h2 class="col-12">
-        Vaults
+        Vaults &#43;
       </h2>
-      <!-- Insert vault component here -->
+      <vaults-component v-for="v in vaults" :vault-prop="v" :key="v.id" />
     </div>
     <div class="row justify-content-between p-5">
+      <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
       <h2 class="col-12">
-        Keeps
+        Keeps &#43;
       </h2>
       <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
     </div>
@@ -34,17 +36,20 @@ import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import KeepsComponent from '../components/KeepsComponent.vue'
 import { profileService } from '../services/ProfileService'
+import VaultsComponent from '../components/VaultsComponent.vue'
 export default {
-  components: { KeepsComponent },
+  components: { KeepsComponent, VaultsComponent },
   name: 'Profile',
   setup() {
     onMounted(async() => {
       await profileService.getProfile()
-      await profileService.getKeepsByProfileId(AppState.profile.id)
+      profileService.getKeepsByProfileId(AppState.profile.id)
+      profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
       profile: computed(() => AppState.profile),
-      keeps: computed(() => AppState.viewingKeeps)
+      keeps: computed(() => AppState.viewingKeeps),
+      vaults: computed(() => AppState.viewingVaults)
     }
   }
 }

@@ -6,5 +6,6 @@ export const AppState = reactive({
   profile: {},
   allKeeps: [],
   oneKeep: {},
-  viewingKeeps: []
+  viewingKeeps: [],
+  viewingVaults: []
 })

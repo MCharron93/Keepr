@@ -31,6 +31,16 @@ class ProfileService {
       logger.log(error)
     }
   }
+
+  async getVaultsByProfileId(profileId) {
+    try {
+      const res = await api.get('api/profiles/' + profileId + '/vaults')
+      logger.log(res.data)
+      AppState.viewingVaults = res.data
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 }
 
 export const profileService = new ProfileService()
