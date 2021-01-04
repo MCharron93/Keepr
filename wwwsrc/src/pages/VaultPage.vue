@@ -1,14 +1,14 @@
 <template>
   <div class="vault">
-    Here is a vault page
+    {{ vault }}
   </div>
 </template>
 
 <script>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { vaultsService } from '../services/VaultsService'
 import { useRoute } from 'vue-router'
-// import { computed } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'Vault',
   setup() {
@@ -17,7 +17,8 @@ export default {
       vaultsService.getKeepsByVaultId(route.params.id)
     })
     return {
-      // keeps: computed(() => )
+      vault: computed(() => AppState.oneVault),
+      keeps: computed(() => AppState.viewingKeeps)
     }
   }
 }

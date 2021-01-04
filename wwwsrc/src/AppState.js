@@ -7,5 +7,6 @@ export const AppState = reactive({
   allKeeps: [],
   oneKeep: {},
   viewingKeeps: [],
-  viewingVaults: []
+  viewingVaults: [],
+  oneVault: {}
 })

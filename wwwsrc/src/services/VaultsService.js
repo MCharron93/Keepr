@@ -7,7 +7,7 @@ class VaultsService {
     try {
       const res = await api.get('api/vaults/' + vaultId)
       logger.log(res.data)
-      AppState.viewVault = res.data
+      AppState.oneVault = res.data
     } catch (error) {
       logger.log(error)
     }
