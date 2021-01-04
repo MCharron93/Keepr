@@ -3,9 +3,9 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class VaultsService {
-  async viewVault(vaultId) {
+  async viewVault(id) {
     try {
-      const res = await api.get('/api/vaults/' + vaultId)
+      const res = await api.get('/api/vaults/' + id)
       AppState.oneVault = res.data
       logger.log(AppState.oneVault)
     } catch (error) {
