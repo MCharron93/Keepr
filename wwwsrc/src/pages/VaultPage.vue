@@ -1,6 +1,9 @@
 <template>
   <div class="vault">
-    {{ vault }}
+    <h2>
+      {{ vault.name }}
+    </h2>
+    <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
   </div>
 </template>
 
@@ -9,7 +12,9 @@ import { computed, onMounted } from 'vue'
 import { vaultsService } from '../services/VaultsService'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import KeepsComponent from '../components/KeepsComponent.vue'
 export default {
+  components: { KeepsComponent },
   name: 'Vault',
   setup() {
     const route = useRoute()
