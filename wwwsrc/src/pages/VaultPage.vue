@@ -18,8 +18,9 @@ export default {
   name: 'Vault',
   setup() {
     const route = useRoute()
-    onMounted(() => {
-      vaultsService.getKeepsByVaultId(route.params.id)
+    onMounted(async() => {
+      await vaultsService.viewVault(route.params.id)
+      await vaultsService.getKeepsByVaultId(route.params.id)
     })
     return {
       vault: computed(() => AppState.oneVault),

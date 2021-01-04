@@ -33,7 +33,7 @@ namespace Keepr.Services
       {
         return foundVault;
       }
-      else if (foundVault.IsPrivate != true && foundVault.CreatorId == userInfo.Id)
+      else if (foundVault.CreatorId == userInfo.Id)
       {
         return foundVault;
       }

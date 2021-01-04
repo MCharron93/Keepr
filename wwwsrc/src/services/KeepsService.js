@@ -16,8 +16,8 @@ class KeepsService {
   async getOneKeep(keepId) {
     try {
       const res = await api.get('/api/keeps/' + keepId)
-      logger.log(res.data)
       AppState.oneKeep = res.data
+      // logger.log(res.data)
     } catch (error) {
       logger.log(error)
     }
