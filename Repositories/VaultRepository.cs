@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Keepr.Models;
 using Dapper;
+using System.Linq;
 
 namespace Keepr.Repositories
 {
@@ -28,11 +29,19 @@ namespace Keepr.Repositories
       return _db.ExecuteScalar<int>(sql, newVault);
     }
 
+    // NOTE 
     internal Vault GetSingleVault(int id)
     {
-      string sql = "SELECT * FROM vaults WHERE id = @Id";
-      return _db.QueryFirstOrDefault<Vault>(sql, new { id });
+
+      string sql = populateCreator + "WHERE vault.id = @id";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { id }, splitOn: "id").FirstOrDefault();
     }
+
+    // internal Vault GetSingleVault(int id)
+    // {
+    //   string sql = "SELECT * FROM vaults WHERE id = @Id";
+    //   return _db.QueryFirstOrDefault<Vault>(sql, new { id });
+    // }
 
     internal bool Delete(int id)
     {
@@ -43,8 +52,8 @@ namespace Keepr.Repositories
 
     public IEnumerable<Vault> GetVaultsByProfileId(string creatorId)
     {
-      string sql = "SELECT * FROM vaults WHERE creatorId = @CreatorId";
-      return _db.Query<Vault>(sql, new { creatorId });
+      string sql = populateCreator + "WHERE creatorId = @CreatorId";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => { vault.Creator = profile; return vault; }, new { creatorId }, splitOn: "id");
     }
 
     internal IEnumerable<Vault> GetAllVaults(string userId)

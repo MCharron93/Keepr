@@ -1,5 +1,5 @@
 <template>
-  <div class="keep">
+  <div class="keep grid-item">
     <div class="card bg-light align-text-bottom" data-toggle="modal" data-target="#keepModal">
       <img :src="keepProp.img" alt="" class="card-img">
       <div class="card-img-overlay row justify-content-between align-items-end text-white">

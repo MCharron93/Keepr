@@ -19,7 +19,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { useRouter } from 'vue-router'
-import { vaultsService } from '../services/VaultsService'
+// import { vaultsService } from '../services/VaultsService'
 export default {
   name: 'VaultsComponent',
   props: {
@@ -32,7 +32,6 @@ export default {
       vaults: computed(() => props.vaultProp),
       viewVault() {
         router.push({ name: 'Vault', params: { id: props.vaultProp.id } })
-        vaultsService.viewVault(props.vaultProp.id)
       }
     }
   }

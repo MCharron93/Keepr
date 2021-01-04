@@ -70,7 +70,6 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-    [Authorize]
     public ActionResult<IEnumerable<Keep>> GetKeepsByVaultId(int id)
     {
       try

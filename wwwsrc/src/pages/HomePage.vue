@@ -1,5 +1,5 @@
 <template>
-  <div class="home row justify-content-around">
+  <div class="home grid justify-content-around">
     <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
   </div>
 </template>
