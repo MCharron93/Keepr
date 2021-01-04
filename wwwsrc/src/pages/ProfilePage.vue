@@ -43,8 +43,8 @@ export default {
   setup() {
     onMounted(async() => {
       await profileService.getProfile()
-      profileService.getKeepsByProfileId(AppState.profile.id)
-      profileService.getVaultsByProfileId(AppState.profile.id)
+      await profileService.getKeepsByProfileId(AppState.profile.id)
+      await profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
       profile: computed(() => AppState.profile),
