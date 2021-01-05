@@ -29,11 +29,11 @@ namespace Keepr.Services
     public Vault GetSingleVault(int id, Profile userInfo)
     {
       Vault foundVault = _repo.GetSingleVault(id);
-      if (foundVault.CreatorId != userInfo.Id && foundVault.IsPrivate != true)
+      if (foundVault.IsPrivate != true)
       {
         return foundVault;
       }
-      else if (foundVault.CreatorId == userInfo.Id)
+      else if (userInfo != null && foundVault.CreatorId == userInfo.Id)
       {
         return foundVault;
       }
