@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Keepr.Models;
 using Keepr.Repositories;
 
@@ -25,11 +26,10 @@ namespace Keepr.Services
     }
 
     // NOTE Updates for KeepCounts based on creating and deleting keeps, apply this to vaults as well for monitoring vault creation and deletion
-    public string updateKeepCount(Profile userInfo)
+    public void updateKeepCount(Profile userInfo)
     {
       userInfo.Keeps++;
       _repo.updateKeepCount(userInfo);
-      return "Successfully updated total keeps!";
     }
 
     public string deleteKeepCount(Profile userInfo)

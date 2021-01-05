@@ -4,7 +4,7 @@ import { audience, clientId, domain } from '../AuthConfig'
 import router from '../router'
 import { setBearer } from './AxiosService'
 import { profileService } from './ProfileService'
-import { logger } from '../utils/Logger'
+// import { logger } from '../utils/Logger'
 
 export const AuthService = initialize({
   domain,
@@ -24,6 +24,6 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   await profileService.getProfile()
   AppState.user = AuthService.user
   // NOTE if there is something you want to do once the user is authenticated, place that here
-  logger.log(AppState.profile)
+  // logger.log(AppState.profile)
   await profileService.getVaultsByProfileId(AppState.profile.id)
 })
