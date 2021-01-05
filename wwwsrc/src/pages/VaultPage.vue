@@ -1,8 +1,11 @@
 <template>
   <div class="vault">
+    <img class="card img-fluid" :src="vault.img" alt="">
+    <br>
     <h2>
       {{ vault.name }}
     </h2>
+    <br>
     <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
   </div>
 </template>
