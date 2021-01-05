@@ -1,6 +1,6 @@
 <template>
   <div class="keep grid-item">
-    <div class="card bg-light align-text-bottom" data-toggle="modal" data-target="#keepModal">
+    <div class="card bg-light align-text-bottom" data-toggle="modal" :data-target="'#keepModal' + keepProp.id">
       <img :src="keepProp.img" alt="" class="card-img">
       <div class="card-img-overlay row justify-content-between align-items-end text-white">
         <h3 class="card-title">
@@ -14,7 +14,7 @@
     </div>
 
     <div class="modal fade"
-         id="keepModal"
+         :id="'keepModal' + keepProp.id"
          tabindex="-1"
          role="dialog"
          aria-labelledby="keepModalTitle"

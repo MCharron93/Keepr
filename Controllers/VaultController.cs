@@ -60,6 +60,7 @@ namespace Keepr.Controllers
     {
       try
       {
+        // NOTE in second auth0 test, error throws on this line, not sure why...? Error message states, Object ref not set to instance of an object???
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         return Ok(_vs.GetSingleVault(id, userInfo));
       }

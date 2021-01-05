@@ -16,40 +16,101 @@
     </div>
     <div class="row justify-content-between p-5">
       <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
-      <h2 class="col-12">
+      <h2 class="col-12" @click="newVault">
         Vaults &#43;
       </h2>
       <vaults-component v-for="v in vaults" :vault-prop="v" :key="v.id" />
     </div>
     <div class="row justify-content-between p-5">
       <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
-      <h2 class="col-12">
+      <h2 class="col-12" data-toggle="modal" data-target="#keepForm">
         Keeps &#43;
       </h2>
       <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
+    </div>
+
+    <!-- Modal Form for Keeps -->
+    <div class="modal fade"
+         id="keepForm"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="keepFormTitle"
+         aria-hidden="true"
+    >
+      <form @submit.prevent="createKeep">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>New Keep</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6>
+                Title:
+                <br>
+                <input type="text" class="modal-title" id="exampleModalLongTitle" v-model="state.newKeep.name">
+              </h6>
+              <h6>
+                Image URL:
+                <br>
+                <input type="text" v-model="state.newKeep.img">
+              </h6>
+              <h6>
+                Description:
+                <br>
+                <textarea cols="60" rows="5" v-model="state.newKeep.description"></textarea>
+              </h6>
+              <h6>
+                Tags:
+                <br>
+                <input type="text" v-model="state.newKeep.tags">
+              </h6>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button class="btn btn-primary" type="submit">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import KeepsComponent from '../components/KeepsComponent.vue'
 import { profileService } from '../services/ProfileService'
 import VaultsComponent from '../components/VaultsComponent.vue'
+import { keepsService } from '../services/KeepsService'
 export default {
   components: { KeepsComponent, VaultsComponent },
   name: 'Profile',
   setup() {
+    const state = reactive({
+      newKeep: {}
+    })
     onMounted(async() => {
       await profileService.getProfile()
       await profileService.getKeepsByProfileId(AppState.profile.id)
       await profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
+      state,
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.viewingKeeps),
-      vaults: computed(() => AppState.viewingVaults)
+      vaults: computed(() => AppState.viewingVaults),
+      createKeep() {
+        keepsService.createKeep(state.newKeep, AppState.profile.id)
+        this.state.newKeep.content = ''
+      }
     }
   }
 }
