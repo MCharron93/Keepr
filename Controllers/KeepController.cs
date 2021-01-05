@@ -61,7 +61,8 @@ namespace Keepr.Controllers
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         newKeep.CreatorId = userInfo.Id;
         Keep created = _ks.CreateKeep(newKeep);
-        _ps.updateKeepCount(userInfo);
+        Profile userProfile = _ps.GetOrCreateProfile(userInfo);
+        _ps.updateKeepCount(userProfile);
         return Ok(created);
       }
       catch (System.Exception e)

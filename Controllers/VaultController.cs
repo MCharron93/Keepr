@@ -15,11 +15,13 @@ namespace Keepr.Controllers
   {
     private readonly VaultService _vs;
     private readonly VaultKeepsService _vks;
+    private readonly ProfileService _ps;
 
-    public VaultsController(VaultService vs, VaultKeepsService vks)
+    public VaultsController(VaultService vs, VaultKeepsService vks, ProfileService ps)
     {
       _vs = vs;
       _vks = vks;
+      _ps = ps;
     }
 
     [HttpPost]
@@ -32,6 +34,8 @@ namespace Keepr.Controllers
         newVault.Creator = userInfo;
         newVault.CreatorId = userInfo.Id;
         Vault created = _vs.CreateVault(newVault);
+        Profile userProfile = _ps.GetOrCreateProfile(userInfo);
+        _ps.updateVaultCount(userProfile);
         return Ok(created);
       }
       catch (System.Exception e)

@@ -25,7 +25,7 @@ namespace Keepr.Services
       return foundProfile;
     }
 
-    // NOTE Updates for KeepCounts based on creating and deleting keeps, apply this to vaults as well for monitoring vault creation and deletion
+    // NOTE Updates for KeepCounts based on creating and deleting keeps
     public void updateKeepCount(Profile userInfo)
     {
       userInfo.Keeps++;
@@ -37,6 +37,13 @@ namespace Keepr.Services
       userInfo.Keeps--;
       _repo.updateKeepCount(userInfo);
       return "Successfully decreased total keeps!";
+    }
+
+    // NOTE Updates for VaultCount based on creating and deleting vaults
+    public void updateVaultCount(Profile userInfo)
+    {
+      userInfo.Vaults++;
+      _repo.updateVaultCount(userInfo);
     }
 
     // public IEnumerable<Blog> GetBlogsByProfile(string profileId, string userId)

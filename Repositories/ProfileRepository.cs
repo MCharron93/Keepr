@@ -41,5 +41,16 @@ namespace Keepr.Repositories
       _db.Execute(sql, userInfo);
     }
 
+
+    internal void updateVaultCount(Profile userInfo)
+    {
+      string sql = @"
+      UPDATE kprofile
+      SET 
+      vaults = @Vaults
+      WHERE id = @Id";
+      _db.Execute(sql, userInfo);
+    }
+
   }
 }

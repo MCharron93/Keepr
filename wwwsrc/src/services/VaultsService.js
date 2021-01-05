@@ -24,6 +24,7 @@ class VaultsService {
 
   async createVault(vaultData, profileId) {
     await api.post('/api/vaults', vaultData)
+    profileService.getProfile()
     profileService.getVaultsByProfileId(profileId)
   }
 

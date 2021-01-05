@@ -17,6 +17,7 @@ class KeepsService {
   async createKeep(keepData, profileId) {
     try {
       await api.post('/api/keeps', keepData)
+      profileService.getProfile()
       profileService.getKeepsByProfileId(profileId)
     } catch (error) {
       logger.log(error)
