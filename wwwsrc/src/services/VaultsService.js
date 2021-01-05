@@ -29,6 +29,14 @@ class VaultsService {
     await api.post('/api/vaults', vaultData)
     profileService.getVaultsByProfileId(profileId)
   }
+
+  async addToVault(vaultKeepData) {
+    try {
+      await api.post('/api/vaultkeeps', vaultKeepData)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 }
 
 export const vaultsService = new VaultsService()

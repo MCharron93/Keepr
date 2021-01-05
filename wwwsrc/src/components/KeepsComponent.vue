@@ -50,7 +50,9 @@
                   &#43; Vault
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" v-for="banana in myVaults" :key="banana.id">{{ banana.name }}</a>
+                  <button class="dropdown-item" v-for="banana in myVaults" :key="banana.id" @click="addToVault(banana.id)">
+                    {{ banana.name }}
+                  </button>
                 </div>
               </div>
               <button class="btn btn-info" @click="viewProfilePage">
@@ -65,7 +67,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { profileService } from '../services/ProfileService'
 import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
@@ -75,20 +77,27 @@ export default {
   props: {
     keepProp: Object
   },
-  newVaultKeep: {},
   setup(props) {
     const router = useRouter()
+    const state = reactive({
+      newVaultKeep: {}
+    })
     onMounted(async() => {
       await profileService.getProfile()
       // await profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
+      state,
       profile: computed(() => AppState.profile),
       keep: computed(() => props.keepProp),
       myVaults: computed(() => AppState.viewingVaults),
-      addToVault() {
+      addToVault(vId, kId) {
         // NOTE this should take in the vaultId that it will be assigned to AND the keepId from the keep
-        vaultsService.addToVault()
+        this.state.newVaultKeep = {
+          vaultId: vId,
+          keepId: props.keepProp.id
+        }
+        vaultsService.addToVault(this.state.newVaultKeep)
       },
       viewProfilePage() {
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })
