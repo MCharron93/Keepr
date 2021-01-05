@@ -16,7 +16,7 @@
     </div>
     <div class="row justify-content-between p-5">
       <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
-      <h2 class="col-12" @click="newVault">
+      <h2 class="col-12" data-toggle="modal" data-target="#vaultForm">
         Vaults &#43;
       </h2>
       <vaults-component v-for="v in vaults" :vault-prop="v" :key="v.id" />
@@ -37,7 +37,7 @@
          aria-labelledby="keepFormTitle"
          aria-hidden="true"
     >
-      <form @submit.prevent="createKeep">
+      <form @submit.prevent="createKeep" class="form-reset">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -80,6 +80,64 @@
         </div>
       </form>
     </div>
+
+    <!-- Modal for creating Vaults -->
+    <div class="modal fade"
+         id="vaultForm"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="vaultFormTitle"
+         aria-hidden="true"
+    >
+      <form @submit.prevent="createVault" class="vault-form-reset">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>New Keep</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6>
+                Title:
+                <br>
+                <input type="text" class="modal-title" id="exampleModalLongTitle" v-model="state.newVault.name">
+              </h6>
+              <h6>
+                Image URL:
+                <br>
+                <input type="text" v-model="state.newVault.img">
+              </h6>
+              <h6>
+                Description:
+                <br>
+                <textarea cols="60" rows="5" v-model="state.newVault.description"></textarea>
+              </h6>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox"
+                         class="form-check-input"
+                         v-model="state.newVault.isPrivate"
+                         value="checkedValue"
+                         unchecked
+                  >
+                  Is Private?
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button class="btn btn-primary" type="submit">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -90,12 +148,14 @@ import KeepsComponent from '../components/KeepsComponent.vue'
 import { profileService } from '../services/ProfileService'
 import VaultsComponent from '../components/VaultsComponent.vue'
 import { keepsService } from '../services/KeepsService'
+import { vaultsService } from '../services/VaultsService'
 export default {
   components: { KeepsComponent, VaultsComponent },
   name: 'Profile',
   setup() {
     const state = reactive({
-      newKeep: {}
+      newKeep: {},
+      newVault: {}
     })
     onMounted(async() => {
       await profileService.getProfile()
@@ -110,6 +170,12 @@ export default {
       createKeep() {
         keepsService.createKeep(state.newKeep, AppState.profile.id)
         this.state.newKeep.content = ''
+        document.querySelector('.form-reset').reset()
+      },
+      createVault() {
+        vaultsService.createVault(state.newVault, AppState.profile.id)
+        this.state.newVault.content = ''
+        document.querySelector('.vault-form-reset').reset()
       }
     }
   }

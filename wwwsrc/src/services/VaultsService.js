@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { profileService } from './ProfileService'
 
 class VaultsService {
   async viewVault(id) {
@@ -21,6 +22,12 @@ class VaultsService {
     } catch (error) {
       logger.log(error)
     }
+  }
+
+  async createVault(vaultData, profileId) {
+    logger.log(vaultData, profileId)
+    await api.post('/api/vaults', vaultData)
+    profileService.getVaultsByProfileId(profileId)
   }
 }
 
