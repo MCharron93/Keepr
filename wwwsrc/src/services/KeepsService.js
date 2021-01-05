@@ -8,7 +8,7 @@ class KeepsService {
     try {
       const res = await api.get('/api/keeps')
       AppState.allKeeps = res.data
-      logger.log(res.data)
+      // logger.log(res.data)
     } catch (error) {
       logger.log(error)
     }

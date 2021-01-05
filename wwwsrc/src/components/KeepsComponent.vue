@@ -38,9 +38,22 @@
               {{ keepProp.description }}
             </div>
             <div class="modal-footer flex-row justify-content-start">
-              <button type="button" class="btn btn-primary" @click="addToVault">
-                &#43; Vault
-              </button>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                >
+                  &#43; Vault
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" v-for="mv in myVaults" :key="mv.id">{{ myVaults.name }}</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
               <button class="btn btn-info" @click="viewProfilePage">
                 User Icon Here
               </button>
@@ -53,25 +66,29 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { profileService } from '../services/ProfileService'
 import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
+import { vaultsService } from '../services/VaultsService'
 export default {
   name: 'Keep',
   props: {
     keepProp: Object
   },
-  newVaultKeep: {
-    selected: ''
-  },
+  newVaultKeep: {},
   setup(props) {
     const router = useRouter()
+    onMounted(async() => {
+      await profileService.getVaultsByProfileId(AppState.profile.id)
+    })
     return {
       profile: computed(() => AppState.profile),
       keep: computed(() => props.keepProp),
+      myVaults: computed(() => AppState.viewingVaults),
       addToVault() {
-
+        // NOTE this should take in the vaultId that it will be assigned to AND the keepId from the keep
+        vaultsService.addToVault()
       },
       viewProfilePage() {
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })

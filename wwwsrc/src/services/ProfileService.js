@@ -34,9 +34,9 @@ class ProfileService {
 
   async getVaultsByProfileId(profileId) {
     try {
+      logger.log(profileId)
       const res = await api.get('api/profiles/' + profileId + '/vaults')
       AppState.viewingVaults = res.data
-      // logger.log(res.data)
     } catch (error) {
       logger.log(error)
     }
