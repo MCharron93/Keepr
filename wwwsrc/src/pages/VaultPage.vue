@@ -1,6 +1,6 @@
 <template>
   <div class="vault">
-    <img class="card img-fluid" :src="vault.img" alt="">
+    <!-- <img class="card img-fluid" :src="vault.img" alt=""> -->
     <br>
     <h2>
       {{ vault.name }}

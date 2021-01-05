@@ -45,13 +45,12 @@
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
+                        v-if="profile.id"
                 >
                   &#43; Vault
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" v-for="mv in myVaults" :key="mv.id">{{ myVaults.name }}</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" v-for="banana in myVaults" :key="banana.id">{{ banana.name }}</a>
                 </div>
               </div>
               <button class="btn btn-info" @click="viewProfilePage">
@@ -80,7 +79,8 @@ export default {
   setup(props) {
     const router = useRouter()
     onMounted(async() => {
-      await profileService.getVaultsByProfileId(AppState.profile.id)
+      await profileService.getProfile()
+      // await profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
       profile: computed(() => AppState.profile),
