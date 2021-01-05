@@ -1,15 +1,11 @@
 <template>
-  <div class="vaults-component card col-3" @click="viewVault">
-    <div class="bg-light align-text-bottom">
-      <!-- <img :src="vaultProp.img" alt="" class="card-img"> -->
-      <div class="row justify-content-between align-items-end text-dark">
+  <div class="vaults-component grid-item" @click="viewVault">
+    <div class="card bg-light align-text-bottom">
+      <img :src="vaultProp.img" alt="" class="card-img">
+      <div class="card-img-overlay row justify-content-between align-items-end text-white">
         <h3 class="card-title">
           {{ vaultProp.name }}
         </h3>
-        <div class="text-info" v-if="profile.id != vaultProp.creatorId">
-          <!--  @click="seeProfilePage(keepProp.creatorId)" -->
-          UserIcon here
-        </div>
       </div>
     </div>
   </div>
