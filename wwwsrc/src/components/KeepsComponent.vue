@@ -60,6 +60,9 @@
               <button class="btn btn-info" @click="viewProfilePage">
                 User Icon Here
               </button>
+              <button class="btn btn-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep">
+                Delete Keep?
+              </button>
             </div>
           </div>
         </div>
@@ -74,6 +77,7 @@ import { profileService } from '../services/ProfileService'
 import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
 import { vaultsService } from '../services/VaultsService'
+import { keepsService } from '../services/KeepsService'
 export default {
   name: 'Keep',
   props: {
@@ -104,6 +108,28 @@ export default {
       viewProfilePage() {
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })
         profileService.getProfileById(props.keepProp.creatorId)
+      },
+      deleteKeep() {
+        // eslint-disable-next-line no-undef
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            keepsService.deleteKeep(props.keepProp.id)
+            // eslint-disable-next-line no-undef
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          }
+        })
       }
     }
   }

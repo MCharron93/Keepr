@@ -24,6 +24,15 @@ class KeepsService {
     }
   }
 
+  async deleteKeep(keepId) {
+    try {
+      const res = await api.delete('/api/keeps/' + keepId)
+      logger.log(res.data)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
+
   // async getOneKeep(keepId) {
   //   try {
   //     const res = await api.get('/api/keeps/' + keepId)
