@@ -15,6 +15,6 @@ namespace Keepr.Models
   // In here you will add the ViewModel for the VaultKeeps : Prodcuct here with a public prop int of VaultKeepsId from the relationship table
   public class VaultKeepsViewModel : Keep
   {
-    public int VaultKeepsId { get; set; }
+    public int VaultKeepId { get; set; }
   }
 }

@@ -16,6 +16,10 @@ namespace Keepr.Services
 
     public Vault CreateVault(Vault newVault)
     {
+      if (newVault.Img == null)
+      {
+        newVault.Img = "https://png.pngtree.com/png-vector/20190115/ourmid/pngtree-vector-vault-icon-png-image_319793.jpg";
+      }
       newVault.Id = _repo.CreateVault(newVault);
       return newVault;
     }

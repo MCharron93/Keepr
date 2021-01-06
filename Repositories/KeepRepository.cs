@@ -67,5 +67,15 @@ namespace Keepr.Repositories
       string sql = "SELECT * FROM keeps WHERE creatorId = @CreatorId";
       return _db.Query<Keep>(sql, new { creatorId });
     }
+
+    internal void updateKeepCount(Keep foundKeep)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET 
+      keeps = @Keeps
+      WHERE id = @Id";
+      _db.Execute(sql, foundKeep);
+    }
   }
 }

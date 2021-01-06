@@ -29,7 +29,8 @@
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
                 {{ keepProp.name }}
-              </h5>
+              </h5>&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Kept: {{ keepProp.keeps }}</p>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -55,6 +56,7 @@
                   </button>
                 </div>
               </div>
+              <!-- <img :src="keepProp.Creator.img" alt=""> -->
               <button class="btn btn-info" @click="viewProfilePage">
                 User Icon Here
               </button>

@@ -65,5 +65,19 @@ namespace Keepr.Services
     {
       return _repo.GetKeepsByProfileId(creatorId);
     }
+
+    public void updateKeepCount(int keepId)
+    {
+      Keep foundKeep = _repo.GetSingleKeep(keepId);
+      foundKeep.Keeps++;
+      _repo.updateKeepCount(foundKeep);
+    }
+
+    public void decreaseKeepCount(int keepId)
+    {
+      Keep foundKeep = _repo.GetSingleKeep(keepId);
+      foundKeep.Keeps--;
+      _repo.updateKeepCount(foundKeep);
+    }
   }
 }
