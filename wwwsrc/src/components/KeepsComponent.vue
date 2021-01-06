@@ -104,8 +104,6 @@ export default {
       },
       viewProfilePage() {
         $('#keepModal' + props.keepProp.id).modal('toggle')
-        // document.querySelector('.modal')
-        // document.querySelector('.modal-backdrop').remove()
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })
         profileService.getProfileById(props.keepProp.creatorId)
       },

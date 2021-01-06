@@ -1,12 +1,14 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary row px-5">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex align-items-end">
         <img
+          class="logo"
           alt="logo"
-          src="../assets/img/cw-logo.png"
+          src="https://cdn1.iconfinder.com/data/icons/andriod-app-logo/32/icon_k-512.png"
           height="45"
         />
+        <h4>EEPER</h4>
       </div>
     </router-link>
     <button
@@ -20,22 +22,10 @@
     >
       <span class="navbar-toggler-icon" />
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
-          </router-link>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarText">
       <span class="navbar-text">
         <button
-          class="btn btn-outline-primary text-uppercase"
+          class="btn btn-light text-uppercase text-dark"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -51,7 +41,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-circle"
             />
             <span class="mx-3">{{ user.name }}</span>
           </div>
@@ -60,7 +50,7 @@
             :class="{ show: state.dropOpen }"
             @click="state.dropOpen = false"
           >
-            <router-link :to="{ name: 'Profile' }">
+            <router-link :to="{ name: 'Profile', params: {id: profile.id} }">
               <div class="list-group-item list-group-item-action hoverable">
                 Profile
               </div>
@@ -90,6 +80,7 @@ export default {
     })
     return {
       state,
+      profile: computed(() => AppState.profile),
       user: computed(() => AppState.user),
       async login() {
         AuthService.loginWithPopup()
@@ -103,6 +94,10 @@ export default {
 </script>
 
 <style scoped>
+/* @font-face {
+  font-family:'Dosis', sans-serif ;
+  src: url("https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap");
+} */
 .dropdown-menu {
   user-select: none;
   display: block;
@@ -115,13 +110,10 @@ export default {
 .hoverable {
   cursor: pointer;
 }
-a:hover {
+.btn-light:hover {
   text-decoration: none;
 }
 .nav-link{
   text-transform: uppercase;
-}
-.nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
 }
 </style>
