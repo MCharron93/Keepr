@@ -7,7 +7,7 @@ class ProfileService {
     try {
       const res = await api.get('api/profiles')
       AppState.profile = res.data
-      // logger.log(AppState.profile)
+      // logger.log('Are you hitting this?')
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
@@ -15,8 +15,9 @@ class ProfileService {
 
   async getProfileById(creatorId) {
     try {
-      // const res = await api.get('/profile/' + creatorId)
-      // AppState.profile = res.data
+      const res = await api.get('/api/profiles/' + creatorId)
+      logger.log('Are you hitting this?')
+      AppState.profile = res.data
     } catch (error) {
       logger.log(error)
     }

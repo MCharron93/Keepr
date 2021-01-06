@@ -158,7 +158,7 @@ export default {
       newVault: {}
     })
     onMounted(async() => {
-      await profileService.getProfile()
+      // await profileService.getProfile()
       await profileService.getKeepsByProfileId(AppState.profile.id)
       await profileService.getVaultsByProfileId(AppState.profile.id)
     })

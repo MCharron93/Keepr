@@ -102,6 +102,7 @@ export default {
         vaultsService.addToVault(this.state.newVaultKeep)
       },
       viewProfilePage() {
+        document.querySelector('.modal-backdrop').remove()
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })
         profileService.getProfileById(props.keepProp.creatorId)
       },

@@ -46,9 +46,9 @@ namespace Keepr.Services
       _repo.updateVaultCount(userInfo);
     }
 
-    // public IEnumerable<Blog> GetBlogsByProfile(string profileId, string userId)
-    // {
-    //   return _repo.GetBlogsByProfile(profileId).ToList().FindAll(b => b.CreatorId == userId || b.IsPublished);
-    // }
+    public Profile GetProfileById(string id)
+    {
+      return _repo.GetProfileById(id);
+    }
   }
 }

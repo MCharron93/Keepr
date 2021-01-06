@@ -26,7 +26,6 @@ namespace Keepr.Controllers
     }
 
     [HttpGet]
-    [Authorize]
     // NOTE this authorization will get back a profile, adds that layer of security on the requests.
     public async Task<ActionResult<Profile>> Get()
     {
@@ -69,20 +68,17 @@ namespace Keepr.Controllers
 
     // Will need to GetProfileById for FE viewing of other's public profiles
 
-    // [HttpGet("{id}/blogs")]
-    // [Authorize]
-    // // NOTE this authorization will get back a profile, adds that layer of security on the requests.
-    // public async Task<ActionResult<Profile>> GetBlogsByProfile(string id)
-    // {
-    //   try
-    //   {
-    //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-    //     return Ok(_ps.GetBlogsByProfile(id, userInfo?.Id));
-    //   }
-    //   catch (System.Exception err)
-    //   {
-    //     return BadRequest(err.Message);
-    //   }
-    // }
+    [HttpGet("{id}")]
+    public ActionResult<Profile> GetProfileById(string id)
+    {
+      try
+      {
+        return Ok(_ps.GetProfileById(id));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
   }
 }

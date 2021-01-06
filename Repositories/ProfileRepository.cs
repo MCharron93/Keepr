@@ -52,5 +52,10 @@ namespace Keepr.Repositories
       _db.Execute(sql, userInfo);
     }
 
+    public Profile GetProfileById(string id)
+    {
+      string sql = "SELECT * FROM kprofile WHERE id = @Id";
+      return _db.QueryFirstOrDefault<Profile>(sql, new { id });
+    }
   }
 }
