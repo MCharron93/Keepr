@@ -78,6 +78,7 @@ import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
 import { vaultsService } from '../services/VaultsService'
 import { keepsService } from '../services/KeepsService'
+import $ from 'jquery'
 export default {
   name: 'Keep',
   props: {
@@ -102,7 +103,9 @@ export default {
         vaultsService.addToVault(this.state.newVaultKeep)
       },
       viewProfilePage() {
-        document.querySelector('.modal-backdrop').remove()
+        $('#keepModal' + props.keepProp.id).modal('toggle')
+        // document.querySelector('.modal')
+        // document.querySelector('.modal-backdrop').remove()
         router.push({ name: 'Profile', params: { id: props.keepProp.creatorId } })
         profileService.getProfileById(props.keepProp.creatorId)
       },
