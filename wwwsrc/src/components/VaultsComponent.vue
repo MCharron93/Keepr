@@ -1,5 +1,5 @@
 <template>
-  <div class="vaults-component grid-item" @click="viewVault">
+  <div class="vaults-component grid-item my-3" @click="viewVault">
     <div class="card bg-light align-text-bottom">
       <img :src="vaultProp.img" alt="" class="card-img">
       <div class="card-img-overlay row justify-content-between align-items-end text-white">
@@ -36,5 +36,10 @@ export default {
 </script>
 
 <style>
-
+.grid-item {
+  float: left;
+  width: auto;
+  height: auto;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+}
 </style>

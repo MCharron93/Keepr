@@ -1,5 +1,5 @@
 <template>
-  <div class="home grid justify-content-around">
+  <div class="home container-fluid grid">
     <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
   </div>
 </template>
@@ -31,5 +31,8 @@ export default {
     height: 200px;
     width: 200px;
   }
+}
+.grid{
+  max-width: 1200px;
 }
 </style>

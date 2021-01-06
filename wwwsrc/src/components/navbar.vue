@@ -23,9 +23,9 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarText">
-      <span class="navbar-text">
+      <span class="navbar-text text-dark">
         <button
-          class="btn btn-light text-uppercase text-dark"
+          class="btn btn-light text-uppercase"
           @click="login"
           v-if="!user.isAuthenticated"
         >
