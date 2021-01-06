@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { profileService } from '../services/ProfileService'
 import { useRouter } from 'vue-router'
 import { AppState } from '../AppState'
@@ -87,10 +87,6 @@ export default {
     const router = useRouter()
     const state = reactive({
       newVaultKeep: {}
-    })
-    onMounted(async() => {
-      await profileService.getProfile()
-      // await profileService.getVaultsByProfileId(AppState.profile.id)
     })
     return {
       state,

@@ -48,6 +48,10 @@ namespace Keepr.Controllers
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         _ks.decreaseKeepCount(id);
+        if (userInfo == null)
+        {
+          throw new System.Exception("Invalid User");
+        }
         return Ok(_vks.Delete(id, userInfo.Id));
       }
       catch (System.Exception e)

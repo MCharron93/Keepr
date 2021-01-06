@@ -19,7 +19,6 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       keeps: computed(() => AppState.allKeeps)
-      // myVaults: computed(() => AppState.viewingVaults)
     }
   }
 }
