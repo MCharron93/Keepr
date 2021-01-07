@@ -14,14 +14,14 @@
         </h4>
       </div>
     </div>
-    <div class="row justify-content-between p-5 grid">
+    <div class="row justify-content-between p-5">
       <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
       <h2 class="col-12" data-toggle="modal" data-target="#vaultForm">
         Vaults &#43;
       </h2>
       <vaults-component v-for="v in vaults" :vault-prop="v" :key="v.id" />
     </div>
-    <div class="row justify-content-between p-5 grid">
+    <div class="row justify-content-between p-5">
       <!-- NOTE launch modal on click to input form, consider component to loads here that are strictly modals -->
       <h2 class="col-12" data-toggle="modal" data-target="#keepForm">
         Keeps &#43;

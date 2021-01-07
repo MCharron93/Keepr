@@ -1,6 +1,10 @@
 <template>
-  <div class="home container-fluid grid">
-    <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" />
+  <div class="home container">
+    <div class="row">
+      <div class="card-columns">
+        <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" class="card-container" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,7 +36,8 @@ export default {
     width: 200px;
   }
 }
-.grid{
-  max-width: 1200px;
+.container{
+  width: 100%;
+  align-items: center;
 }
 </style>

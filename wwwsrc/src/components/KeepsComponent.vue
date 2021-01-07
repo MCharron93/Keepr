@@ -1,9 +1,9 @@
 <template>
-  <div class="keep grid-item m-3">
-    <div class="card bg-light align-text-bottom" data-toggle="modal" :data-target="'#keepModal' + keepProp.id">
+  <div class="keep">
+    <div class="card m-3 bg-light align-text-bottom" data-toggle="modal" :data-target="'#keepModal' + keepProp.id">
       <img :src="keepProp.img" alt="" class="card-img">
       <div class="card-img-overlay row justify-content-between align-items-end text-white">
-        <h3 class="card-title">
+        <h3 class="card-title px-2">
           {{ keepProp.name }}
         </h3>
         <div class="text-info" v-if="profile.id != keepProp.creatorId">
@@ -161,10 +161,19 @@ export default {
 .card-title:hover{
 text-decoration: underline;
 }
-.grid-item {
-  float: left;
-  width: auto;
-  height: auto;
-  border: 2px solid hsla(0, 0%, 0%, 0.5);
+.card img{
+  width: 100%;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+.card{
+  border-radius: 12px;
+  background: #fff;
+  padding: 1%;
+  box-shadow: 10px 10px 24px -12px rgba(0, 0, 0, 0.75);
+}
+.card:hover{
+  box-shadow: inset 10px 10px 24px -12px (0, 0, 0, 0.75);
+ transform: scale(0.9);
 }
 </style>
