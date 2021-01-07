@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer flex-row justify-content-between align-items-end">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle"
+                <button class="btn btn-secondary dropdown-toggle btn-sm"
                         type="button"
                         id="dropdownMenuButton"
                         data-toggle="dropdown"
@@ -68,12 +68,11 @@
                   </button>
                 </div>
               </div>
-              <!-- <img :src="keepProp.Creator.img" alt=""> -->
-              <button class="btn btn-info" @click="viewProfilePage">
-                <i class="bi bi-person-circle"></i>
+              <!-- <img :src="keepProp.Creator.img" alt=""> --><p class="creator">
+                <i class="bi bi-person-circle " @click="viewProfilePage"></i>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16"
-                     height="16"
+                     width="20"
+                     height="20"
                      fill="currentColor"
                      class="bi bi-person-circle"
                      viewBox="0 0 16 16"
@@ -82,10 +81,18 @@
                   <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                   <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
                 </svg>
-              </button>
-              <button class="btn btn-danger" v-if="profile.id == keepProp.creatorId" @click="deleteKeep">
-                Delete Keep?
-              </button>
+                &nbsp;{{ keepProp.creator.name }}
+              </p>
+              <i class="bi bi-trash-fill" v-if="profile.id == keepProp.creatorId" @click="deleteKeep"></i>
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="20"
+                   height="20"
+                   fill="currentColor"
+                   class="bi bi-trash-fill"
+                   viewBox="0 0 16 16"
+              >
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+              </svg>
             </div>
           </div>
         </div>
@@ -175,5 +182,16 @@ text-decoration: underline;
 .card:hover{
   box-shadow: inset 10px 10px 24px -12px (0, 0, 0, 0.75);
  transform: scale(0.9);
+}
+.dropdown button{
+  color: #fff;
+}
+.bi-trash-fill{
+  color: #D63031;
+}
+.creator{
+  color: #74B9FF;
+}
+.bi-person-circle{
 }
 </style>

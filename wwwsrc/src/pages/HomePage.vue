@@ -1,8 +1,10 @@
 <template>
   <div class="home container">
     <div class="row">
-      <div class="card-columns">
-        <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" class="card-container" />
+      <div class="col-12">
+        <div class="card-columns">
+          <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" class="card-container mx-2" />
+        </div>
       </div>
     </div>
   </div>
@@ -29,15 +31,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home{
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
+.home.row{
+  // user-select: none;
+  // > img{
+  //   height: 200px;
+  //   width: 200px;
+  // }
 }
 .container{
-  width: 100%;
-  align-items: center;
+  // width: 100%;
+  // align-items: center;
 }
 </style>
