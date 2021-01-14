@@ -52,4 +52,3 @@
 --     REFERENCES keeps(id)
 --     ON DELETE CASCADE
 -- )
--- DROP TABLE keeps, kprofile, vaults, vaultKeeps
