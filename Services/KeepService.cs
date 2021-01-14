@@ -63,7 +63,8 @@ namespace Keepr.Services
 
     public IEnumerable<Keep> GetKeepsByProfileId(string creatorId)
     {
-      return _repo.GetKeepsByProfileId(creatorId);
+      IEnumerable<Keep> userKeeps = _repo.GetKeepsByProfileId(creatorId);
+      return userKeeps;
     }
 
     public void updateKeepCount(int keepId)

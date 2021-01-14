@@ -8,17 +8,6 @@
         </h3>
         <div class="text-info" v-if="profile.id != keepProp.creatorId">
           <i class="bi bi-person-circle"></i>
-          <svg xmlns="http://www.w3.org/2000/svg"
-               width="16"
-               height="16"
-               fill="currentColor"
-               class="bi bi-person-circle"
-               viewBox="0 0 16 16"
-          >
-            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-          </svg>
         </div>
       </div>
     </div>
@@ -33,7 +22,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content row flex-row">
           <div class="align-self-center p-3">
-            <img :src="keepProp.img" alt="" class="mx-100 mh-100">
+            <img :src="keepProp.img" alt="" class="img-fluid">
           </div>
           <div class="col p-2 d-flex flex-column flex-grow">
             <div class="modal-header">
@@ -69,30 +58,10 @@
                 </div>
               </div>
               <!-- <img :src="keepProp.Creator.img" alt=""> --><p class="creator">
-                <i class="bi bi-person-circle " @click="viewProfilePage"></i>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     width="20"
-                     height="20"
-                     fill="currentColor"
-                     class="bi bi-person-circle"
-                     viewBox="0 0 16 16"
-                >
-                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-                </svg>
+                <i v-if="profile.id != keepProp.creatoId" class="bi bi-person-circle " @click="viewProfilePage"></i>
                 &nbsp;{{ keepProp.creator.name }}
               </p>
               <i class="bi bi-trash-fill" v-if="profile.id == keepProp.creatorId" @click="deleteKeep"></i>
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="20"
-                   height="20"
-                   fill="currentColor"
-                   class="bi bi-trash-fill"
-                   viewBox="0 0 16 16"
-              >
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-              </svg>
             </div>
           </div>
         </div>
@@ -165,6 +134,7 @@ export default {
 </script>
 
 <style>
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 .card-title:hover{
 text-decoration: underline;
 }

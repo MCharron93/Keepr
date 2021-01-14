@@ -64,8 +64,9 @@ namespace Keepr.Repositories
 
     public IEnumerable<Keep> GetKeepsByProfileId(string creatorId)
     {
-      string sql = "SELECT * FROM keeps WHERE creatorId = @CreatorId";
-      return _db.Query<Keep>(sql, new { creatorId });
+      string sql = populateCreator + "WHERE creatorId = @CreatorId";
+      // return _db.Query<Keep>(sql, new { creatorId });
+      return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => { keep.Creator = profile; return keep; }, new { creatorId }, splitOn: "id");
     }
 
     internal void updateKeepCount(Keep foundKeep)

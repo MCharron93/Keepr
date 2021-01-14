@@ -26,7 +26,7 @@
       <h2 class="col-12" data-toggle="modal" data-target="#keepForm">
         Keeps &#43;
       </h2>
-      <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
+      <keeps-component v-for="k in keeps" :key="k.id" :keep-prop="k" class="card-container mx-2" />
     </div>
 
     <!-- Modal Form for Keeps -->
@@ -149,16 +149,18 @@ import { profileService } from '../services/ProfileService'
 import VaultsComponent from '../components/VaultsComponent.vue'
 import { keepsService } from '../services/KeepsService'
 import { vaultsService } from '../services/VaultsService'
+import { useRoute } from 'vue-router'
 export default {
   components: { KeepsComponent, VaultsComponent },
   name: 'Profile',
   setup() {
+    const route = useRoute()
     const state = reactive({
       newKeep: {},
       newVault: {}
     })
     onMounted(async() => {
-      // await profileService.getProfile()
+      await profileService.getProfileById(route.params.id)
       await profileService.getKeepsByProfileId(AppState.profile.id)
       await profileService.getVaultsByProfileId(AppState.profile.id)
     })

@@ -27,7 +27,7 @@ class ProfileService {
     try {
       const res = await api.get('api/profiles/' + profileId + '/keeps')
       AppState.viewingKeeps = res.data
-      // logger.log(res.data)
+      logger.log(AppState.viewingKeeps)
     } catch (error) {
       logger.log(error)
     }
