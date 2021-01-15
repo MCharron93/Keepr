@@ -150,6 +150,7 @@ import VaultsComponent from '../components/VaultsComponent.vue'
 import { keepsService } from '../services/KeepsService'
 import { vaultsService } from '../services/VaultsService'
 import { useRoute } from 'vue-router'
+import $ from 'jquery'
 export default {
   components: { KeepsComponent, VaultsComponent },
   name: 'Profile',
@@ -172,7 +173,7 @@ export default {
       createKeep() {
         keepsService.createKeep(state.newKeep, AppState.profile.id)
         this.state.newKeep.content = ''
-        document.querySelector('.form-reset').reset()
+        $('#keepForm').modal('toggle')
       },
       createVault() {
         vaultsService.createVault(state.newVault, AppState.profile.id)

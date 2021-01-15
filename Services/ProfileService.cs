@@ -35,6 +35,10 @@ namespace Keepr.Services
     public string deleteKeepCount(Profile userInfo)
     {
       userInfo.Keeps--;
+      if (userInfo.Keeps < 0)
+      {
+        userInfo.Keeps = 0;
+      }
       _repo.updateKeepCount(userInfo);
       return "Successfully decreased total keeps!";
     }
