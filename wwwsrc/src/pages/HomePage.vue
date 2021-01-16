@@ -31,15 +31,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.home.row{
-  // user-select: none;
-  // > img{
-  //   height: 200px;
-  //   width: 200px;
-  // }
-}
-.container{
-  // width: 100%;
-  // align-items: center;
-}
+
 </style>

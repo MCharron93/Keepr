@@ -1,15 +1,25 @@
 <template>
-  <div class="vault">
+  <div class="vault container-fluid">
     <!-- <img class="card img-fluid" :src="vault.img" alt=""> -->
+    <div class="row text-center p-4">
+      <h2 class="col-11 d-flex justify-content-around">
+        {{ vault.name }}
+      </h2>
+      <i class="bi bi-trash-fill p-2" v-if="profile.id == vault.creatorId" @click="deleteVault(vault.id)"></i>
+      <p class="col-11 p-4">
+        {{ vault.description }}
+      </p>
+    </div>
     <br>
-    <h2>
-      {{ vault.name }}
-    </h2>
-    <button v-if="profile.id == vault.creatorId" class="btn btn-danger" @click="deleteVault(vault.id)">
-      &times;
-    </button>
-    <br>
-    <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" />
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card-columns">
+            <keeps-component v-for="k in keeps" :keep-prop="k" :key="k.id" class="card-container mx-2" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,5 +72,6 @@ export default {
 </script>
 
 <style>
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
 </style>

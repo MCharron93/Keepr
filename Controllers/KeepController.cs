@@ -96,8 +96,9 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        _ps.deleteKeepCount(userInfo);
-        return Ok(_ks.Delete(id, userInfo.Id));
+        Profile foundProfile = _ps.GetOrCreateProfile(userInfo);
+        _ps.deleteKeepCount(foundProfile);
+        return Ok(_ks.Delete(id, foundProfile.Id));
       }
       catch (System.Exception e)
       {
