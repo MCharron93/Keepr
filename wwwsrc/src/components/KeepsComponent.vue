@@ -124,7 +124,10 @@ export default {
               'Deleted!',
               'Your file has been deleted.',
               'success'
+
             )
+            $('#keepModal' + props.keepProp.id).modal('toggle')
+            profileService.getKeepsByProfileId(this.profile.id)
           }
         })
       }

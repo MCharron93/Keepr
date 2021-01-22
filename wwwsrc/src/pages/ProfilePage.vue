@@ -172,12 +172,15 @@ export default {
       vaults: computed(() => AppState.viewingVaults),
       createKeep() {
         keepsService.createKeep(state.newKeep, AppState.profile.id)
-        this.state.newKeep.content = ''
+        state.newKeep.description = ''
+        state.newKeep.name = ''
+        state.newKeep.img = ''
         $('#keepForm').modal('toggle')
       },
       createVault() {
         vaultsService.createVault(state.newVault, AppState.profile.id)
-        this.state.newVault.content = ''
+        state.newVault.description = ''
+        state.newVault.name = ''
         $('#vaultForm').modal('toggle')
       }
     }
