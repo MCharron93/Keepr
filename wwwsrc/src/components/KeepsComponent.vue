@@ -33,7 +33,7 @@
                 Kept: {{ keepProp.keeps }}
               </h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true" class="closing">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -57,7 +57,7 @@
                   </button>
                 </div>
               </div>
-              <!-- <img :src="keepProp.Creator.img" alt=""> --><p class="creator">
+              <p class="creator">
                 <i v-if="profile.id != keepProp.creatoId" class="bi bi-person-circle " @click="viewProfilePage"></i>
                 &nbsp;{{ keepProp.creator.name }}
               </p>
@@ -155,7 +155,7 @@ text-decoration: underline;
 .card:hover{
   box-shadow: inset 10px 10px 24px -12px (0, 0, 0, 0.75);
   transform: scale(0.9);
-  transition: 2s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 .dropdown button{
   color: #fff;
@@ -168,5 +168,8 @@ text-decoration: underline;
 }
 .bi-person-circle{
   color: #a655e7;
+}
+.dropdown-item {
+  background: #FD79A8;
 }
 </style>
