@@ -20,7 +20,7 @@
          aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content row flex-row">
+        <div class="modal-content row flex-column">
           <div class="align-self-center p-3">
             <img :src="keepProp.img" alt="" class="img-fluid">
           </div>
