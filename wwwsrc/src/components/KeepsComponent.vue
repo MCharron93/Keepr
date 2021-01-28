@@ -154,7 +154,8 @@ text-decoration: underline;
 }
 .card:hover{
   box-shadow: inset 10px 10px 24px -12px (0, 0, 0, 0.75);
- transform: scale(0.9);
+  transform: scale(0.9);
+  transition: 2s ease-in-out;
 }
 .dropdown button{
   color: #fff;
@@ -163,8 +164,9 @@ text-decoration: underline;
   color: #D63031;
 }
 .creator{
-  color: #74B9FF;
+  color: #a655e7;
 }
 .bi-person-circle{
+  color: #a655e7;
 }
 </style>
