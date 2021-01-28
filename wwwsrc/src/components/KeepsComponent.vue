@@ -33,7 +33,7 @@
                 Kept: {{ keepProp.keeps }}
               </h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="closing">&times;</span>
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -171,5 +171,11 @@ text-decoration: underline;
 }
 .dropdown-item {
   background: #FD79A8;
+}
+.close{
+  color: #E17055;
+}
+.close:hover{
+  color: #D63031;
 }
 </style>
